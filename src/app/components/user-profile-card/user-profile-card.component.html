@@ -1,0 +1,21 @@
+<li [ngClass]="{ 'selected': isSelected }" (click)="onUserSelect()">
+  <div>
+    <strong>{{ user.name | initials }}</strong> - <span>{{ user.email }}</span>
+    <div [innerHTML]="user.name | highlight: searchTerm"></div>
+  </div>
+
+  <!-- The @if block replaces both *ngIf and the <ng-template> -->
+  @if (user.isActive) {
+    <div>
+      <p>Status: Active</p>
+      <p>Joined: {{ user.joinDate | date:'mediumDate' }}</p>
+    </div>
+  } @else {
+    <div>
+      <p>Status: Inactive</p>
+    </div>
+  }
+
+  <button (click)="onDeleteClick($event)">Delete</button>
+</li>
+

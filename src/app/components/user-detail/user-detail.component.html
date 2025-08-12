@@ -1,0 +1,11 @@
+<div *ngIf="selectedUser$ | async as selectedUser; else noUserSelected" class="details-card">
+  <h3>User Details</h3>
+  <p><strong>Name:</strong> {{ selectedUser.name }}</p>
+  <p><strong>Email:</strong> {{ selectedUser.email }}</p>
+  <p><strong>Joined:</strong> {{ selectedUser.joinDate | date:'fullDate' }}</p>
+  <p><strong>Status:</strong> {{ selectedUser.isActive ? 'Active' : 'Inactive' }}</p>
+</div>
+
+<ng-template #noUserSelected>
+  <p>Please select a user from the list.</p>
+</ng-template>

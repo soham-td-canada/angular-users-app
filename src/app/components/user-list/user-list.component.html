@@ -1,0 +1,38 @@
+<div class="controls">
+  <div>
+    <label>
+      <input type="checkbox" (change)="onFilterChange($event)" />
+      Show Active Only
+    </label>
+  </div>
+  <div>
+    <input #searchInput type="text" placeholder="Search by name..." (input)="onSearchChange($event)" />
+    <button (click)="onSearchInputClear(searchInput)">Clear</button>
+  </div>
+  <div>
+    <button (click)="toggleAddUserForm()">
+      {{ showAddUserForm ? 'Cancel' : 'Add New User' }}
+    </button>
+  </div>
+</div>
+
+<!-- Conditionally show the form using the new @if syntax -->
+@if (showAddUserForm) {
+  <app-add-user-form (formSubmitted)="toggleAddUserForm()"></app-add-user-form>
+}
+
+<!-- Now we only need one @if and one async pipe for the list -->
+@if (vm$ | async; as vm) {
+  @if (vm.users.length > 0) {
+    <ul>
+      @for (user of vm.users; track user.id) {
+        <app-user-profile-card
+          [user]="user"
+          [searchTerm]="vm.searchTerm">
+        </app-user-profile-card>
+      }
+    </ul>
+  } @else {
+    <p class="no-results">No users found.</p>
+  }
+}

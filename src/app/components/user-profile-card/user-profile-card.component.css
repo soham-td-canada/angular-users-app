@@ -1,0 +1,52 @@
+/*
+  The :host pseudo-class targets the component's own host element
+  (in this case, <app-user-profile-card>). It's the standard way
+  to apply styles that control the component's layout from the outside,
+  like margins, display, etc.
+*/
+:host {
+  display: block; /* Makes the component behave like a block-level element */
+  margin-bottom: 8px; /* Adds some space between cards */
+}
+
+/*
+  These styles target elements *inside* the component's template.
+  They will not affect any other <li> or <p> tags in your application.
+*/
+li {
+  list-style-type: none;
+  padding: 12px 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li:hover {
+  background-color: #f5f5f5;
+}
+
+/* This is the style for our selected state from Problem #8 */
+.selected {
+  background-color: #e0f7fa;
+  border-left: 4px solid #00bcd4;
+  font-weight: bold;
+}
+
+/* Target the delete button specifically within this component */
+button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 10px;
+  cursor: pointer;
+  margin-left: 16px;
+}
+
+button:hover {
+  background-color: #d32f2f;
+}
